@@ -22,6 +22,7 @@
                   
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">Ayarlar</a>
+                    <a href="{{ route('cache.clear')}}" class="dropdown-item">Temizle</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item">Güvenli Çıkış</button>

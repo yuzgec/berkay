@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\MediaService;
 use App\Models\ProjectCategory;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\ProjectCategoryRequest;
 
 class ProjectCategoryController extends Controller
-
 {
-    public function __construct(){
-        Artisan::call('cache:clear');
+  
+    protected $mediaService;
+
+    public function __construct(MediaService $mediaService)
+    {
+        $this->mediaService = $mediaService;
     }
 
     public function index()
@@ -30,25 +33,24 @@ class ProjectCategoryController extends Controller
     {
          $New = ProjectCategory::create($request->except('image', 'images'));
         
+        
          $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMultipleMediaUpload(
-                    $New,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $New,
+                $files,
+                'gallery',
+            );
         }
+
 
         if ($request->parent_id){
             $node = ProjectCategory::find($request->parent_id);
@@ -82,21 +84,19 @@ class ProjectCategoryController extends Controller
         $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $update,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $update,
+                $files,
+                'gallery',
+                false
+            );
         }
 
 

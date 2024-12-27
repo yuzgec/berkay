@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BlogRequest;
-use App\Http\Requests\PageRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Services\MediaService;
+use App\Http\Requests\BlogRequest;
+use App\Http\Requests\PageRequest;
 
 class BlogController extends Controller
 {
+
+    protected $mediaService;
+
+    public function __construct(MediaService $mediaService)
+    {
+        $this->mediaService = $mediaService;
+    }
+    
     public function index()
     {
         $All = Blog::with('getCategory')->orderBy('rank')->get();
@@ -28,6 +37,7 @@ class BlogController extends Controller
     {
         $New = Blog::create($request->except('image', 'gallery'));
 
+        
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
@@ -35,17 +45,16 @@ class BlogController extends Controller
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
-                $this->mediaService->handleMultipleMediaUpload(
-                    $New,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $New,
+                $files,
+                'gallery',
+            );
         }
+
 
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('blog.index');
@@ -75,21 +84,19 @@ class BlogController extends Controller
         $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $update,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $update,
+                $files,
+                'gallery',
+                false
+            );
         }
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
         return redirect()->route('blog.index');

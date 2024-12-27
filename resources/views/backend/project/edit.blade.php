@@ -88,7 +88,7 @@
                     @foreach($Edit->getMedia('gallery') as $item)
                         <tr id="gallery_{{$item->id}}">
                             <td>
-                                <img src="{{ $item->getUrl() }}" class="img-fluid" width="75px"> 
+                                <img src="{{ $item->getUrl('thumb')}}" width="75">
                             </td>
                             <td>
                                 <form action="{{route('service.deleteGaleriDelete', $Edit->id)}}" method="POST">

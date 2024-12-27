@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Services\MediaService;
 use App\Models\ProjectCategory;
 use App\Http\Requests\ProjectRequest;
-use Illuminate\Support\Facades\Artisan;
 
 class ProjectController extends Controller
 {
 
-    public function __construct(){
-        Artisan::call('cache:clear');
+    protected $mediaService;
+
+    public function __construct(MediaService $mediaService)
+    {
+        $this->mediaService = $mediaService;
     }
+
 
     public function index()
     {
@@ -31,9 +35,7 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-
-        //dd($request->all());
-        $New = Project::create($request->except('token','image', 'images'));
+        $New = Project::create($request->except('token', 'image', 'images'));
         
         $this->mediaService->handleMediaUpload(
             $New, 
@@ -43,18 +45,14 @@ class ProjectController extends Controller
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $New,
-                    $file,
-                    'gallery',
-                    true,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $New,
+                $files,
+                'gallery',
+            );
         }
-
-
 
         toast(SWEETALERT_MESSAGE_CREATE, 'success');
         return redirect()->route('project.index');
@@ -78,7 +76,7 @@ class ProjectController extends Controller
     {
         tap($update)->update($request->except('image', 'images'));
 
-        $this->mediaService->handleMediaUpload(
+        $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
             'page',
@@ -86,15 +84,14 @@ class ProjectController extends Controller
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $update,
-                    $file,
-                    'gallery',
-                    true,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $update,
+                $files,
+                'gallery',
+                false
+            );
         }
 
         toast(SWEETALERT_MESSAGE_UPDATE, 'success');

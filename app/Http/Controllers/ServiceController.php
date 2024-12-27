@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
-use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
+use App\Services\MediaService;
+use App\Models\ServiceCategory;
+use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
 {
 
-    public function __construct(){
-        Artisan::call('cache:clear');
+    protected $mediaService;
+
+    public function __construct(MediaService $mediaService)
+    {
+        $this->mediaService = $mediaService;
     }
+
 
     public function index()
     {
@@ -42,15 +46,13 @@ class ServiceController extends Controller
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMultipleMediaUpload(
-                    $New,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $New,
+                $files,
+                'gallery',
+            );
         }
 
         $New->save();
@@ -85,21 +87,19 @@ class ServiceController extends Controller
         $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $update,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $update,
+                $files,
+                'gallery',
+                false
+            );
         }
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');

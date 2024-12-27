@@ -33,7 +33,6 @@ class PageController extends Controller
     {
         $New = Page::create($request->except('image', 'images'));
 
-        
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
@@ -42,15 +41,13 @@ class PageController extends Controller
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMultipleMediaUpload(
-                    $New,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $New,
+                $files,
+                'gallery',
+            );
         }
         
         toast(SWEETALERT_MESSAGE_CREATE,'success');
@@ -80,21 +77,19 @@ class PageController extends Controller
         $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
-                    $update,
-                    $file,
-                    'gallery',
-                    false,
-                    false
-                );
-            }
+            $files = $request->file('images');
+            
+            $this->mediaService->handleMultipleMediaUpload(
+                $update,
+                $files,
+                'gallery',
+                false
+            );
         }
 
 

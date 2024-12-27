@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ProjectController;
@@ -25,6 +26,11 @@ Route::get('/ekip/{url}', [HomeController::class, 'teamdetail'])->name('teamdeta
 
 Route::get('/projeler/{url}', [HomeController::class, 'proje'])->name('proje');
 Route::get('/proje/{url}', [HomeController::class, 'projedetail'])->name('projedetail');
+
+Route::get('/clear', function(){
+    Artisan::call('cache:clear');
+    return redirect()->back();
+})->name('cache.clear');
 
 Route::group(["prefix"=>"go", 'middleware' => ['auth','web', 'admin']],function() {
     Route::get('/', 'DashboardController@index')->name('go');
