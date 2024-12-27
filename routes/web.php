@@ -23,6 +23,9 @@ Route::post('/form', [HomeController::class, 'form'])->name('form');
 Route::get('/ekibimiz', [HomeController::class, 'team'])->name('team');
 Route::get('/ekip/{url}', [HomeController::class, 'teamdetail'])->name('teamdetail');
 
+Route::get('/projeler/{url}', [HomeController::class, 'proje'])->name('proje');
+Route::get('/proje/{url}', [HomeController::class, 'projedetail'])->name('projedetail');
+
 Route::group(["prefix"=>"go", 'middleware' => ['auth','web', 'admin']],function() {
     Route::get('/', 'DashboardController@index')->name('go');
 

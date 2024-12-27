@@ -42,38 +42,36 @@ class ProjectController extends Controller
         $New->seo_title = $request->seo_title;
 
         if($request->hasfile('image')){
-            $New->addMedia($request->image)->toMediaCollection('page');
+            $New->addMedia($request->image)->preservingOriginal()->toMediaCollection('page');
         }
         if($request->hasfile('gallery')) {
             foreach ($request->gallery as $item){
-                $New->addMedia($item)->toMediaCollection('gallery');
+                $New->addMedia($item)->preservingOriginal()->toMediaCollection('gallery');
             }
         }
 
         $New->save();
 
-        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        toast(SWEETALERT_MESSAGE_CREATE, 'success');
         return redirect()->route('project.index');
-
     }
 
 
     public function show($id)
     {
-        $Show = Page::findOrFail($id);
+        $Show = Project::findOrFail($id);
         return view('frontend.project.index', compact('Show'));
     }
 
     public function edit($id)
     {
-        $Edit = Page::findOrFail($id);
-        $Kategori = PageCategory::pluck('title', 'id');
+        $Edit = Project::findOrFail($id);
+        $Kategori = ProjectCategory::pluck('title', 'id');
         return view('backend.project.edit', compact('Edit', 'Kategori'));
     }
 
     public function update(ProjectRequest $request, $id)
     {
-        //dd($request->all());
         $Update = Project::findOrFail($id);
         $Update->title = $request->title;
         $Update->category = $request->category;
@@ -84,26 +82,29 @@ class ProjectController extends Controller
         $Update->seo_desc = $request->seo_desc;
         $Update->seo_key = $request->seo_key;
 
-        if($request->removeImage == "1"){
+        if ($request->removeImage == "1") {
             $Update->media()->where('collection_name', 'page')->delete();
         }
 
         if ($request->hasFile('image')) {
             $Update->media()->where('collection_name', 'page')->delete();
-            $Update->addMedia($request->image)->toMediaCollection('page');
+            $Update->addMedia($request->image)
+                ->preservingOriginal()
+                ->toMediaCollection('page');
         }
 
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $Update->addMedia($item)->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->gallery as $item) {
+                $Update->addMedia($item)
+                    ->preservingOriginal()
+                    ->toMediaCollection('gallery');
             }
         }
 
         $Update->save();
 
-        toast(SWEETALERT_MESSAGE_UPDATE,'success');
+        toast(SWEETALERT_MESSAGE_UPDATE, 'success');
         return redirect()->route('project.index');
-
     }
 
     public function destroy($id)
@@ -112,7 +113,7 @@ class ProjectController extends Controller
         $Delete->delete();
 
         toast(SWEETALERT_MESSAGE_DELETE,'success');
-        return redirect()->route('page.index');
+        return redirect()->route('project.index');
     }
 
     public function getTrash(){

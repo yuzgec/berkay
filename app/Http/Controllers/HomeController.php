@@ -7,7 +7,9 @@ use App\Models\Form;
 use App\Models\Page;
 use App\Models\Team;
 use App\Models\Video;
+use App\Models\Project;
 use App\Models\Service;
+use App\Models\ProjectCategory;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactRequest;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -86,21 +88,21 @@ class HomeController extends Controller
     }
 
 
-    public function team(){
+    public function proje($url){
 
-        SEOMeta::setTitle('Ekibimiz');
+        SEOMeta::setTitle('Projeler');
         SEOMeta::setDescription("");
         SEOMeta::setCanonical(url()->full());
 
-        $Team = Team::orderBy('rank')->get();
+        $Detail = ProjectCategory::where('slug', $url)->orderBy('rank')->first();
 
 
-        return view('frontend.page.team', compact('Team'));
+        return view('frontend.project.index', compact('Detail'));
     }
 
-    public function teamdetail($url){
-        $Detail = Team::where('slug', $url)->firstOrFail();
-        return view('frontend.page.person',compact('Detail'));
+    public function projedetail($url){
+        $Detail = Project::where('slug', $url)->firstOrFail();
+        return view('frontend.project.detail',compact('Detail'));
     }
 
     public function video(){

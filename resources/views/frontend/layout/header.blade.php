@@ -35,7 +35,7 @@
 										<a href="" class="nav-link dropdown-toggle">Projeler<i class="fas fa-chevron-down"></i></a>
 										<ul class="dropdown-menu">
 											@foreach ($ProjectCategory as $item)
-											<li><a href="{{ route('servicedetail', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
+											<li><a href="{{ route('proje', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
 											@endforeach	
 										</ul>
 									</li>

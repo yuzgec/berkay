@@ -36,6 +36,13 @@ class Project extends Model implements HasMedia,Viewable
         return $this->belongsTo('App\Models\ProjectCategory', 'category');
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')
+            ->useFallbackUrl('/path/to/fallback/image.jpg')
+            ->useFallbackPath(public_path('/path/to/fallback/image.jpg'));
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('img')->width(1000)->nonOptimized();
