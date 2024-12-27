@@ -78,7 +78,7 @@ class ProjectController extends Controller
     {
         tap($update)->update($request->except('image', 'images'));
 
-        $this->mediaService->updateMedia(
+        $this->mediaService->handleMediaUpload(
             $update, 
             $request->file('image'),
             'page',
@@ -87,7 +87,7 @@ class ProjectController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $this->mediaService->updateMedia(
+                $this->mediaService->handleMediaUpload(
                     $update,
                     $file,
                     'gallery',
