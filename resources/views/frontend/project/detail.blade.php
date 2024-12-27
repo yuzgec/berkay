@@ -55,15 +55,12 @@
     <div class="bounce-loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>
 
 </div>
-
+@if($Detail->desc)
 <div class="container">
     <div class="row pb-4">
         <div class="col-lg-8 mb-5 mb-lg-0 appear-animation animated fadeInUpShorterPlus appear-animation-visible" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="200" style="animation-delay: 200ms;">
             <div class="card box-shadow-1 custom-border-radius-1 mb-5" id="form">
                 <div class="card-body z-index-1 py-4 my-3">
-                    @if($Detail->getFirstMediaUrl('page'))
-                        <img src="{{ $Detail->getFirstMediaUrl('page') }}" class="img-fluid mb-3" alt="{{ $Detail->title }}">
-                    @endif
                     {!!  $Detail->desc !!}
                 </div>
             </div>
@@ -93,4 +90,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
