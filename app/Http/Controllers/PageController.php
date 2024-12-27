@@ -34,7 +34,7 @@ class PageController extends Controller
         $New = Page::create($request->except('image', 'gallery'));
 
         
-        $this->mediaService->updateMedia(
+        $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
             $request->input('deleteImage'),
@@ -44,7 +44,7 @@ class PageController extends Controller
 
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $file) {
-                $this->mediaService->handleMediaUpload(
+                $this->mediaService->handleMultipleMediaUpload(
                     $New,
                     $file,
                     'gallery',
@@ -53,6 +53,7 @@ class PageController extends Controller
                 );
             }
         }
+        
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('page.index');
 

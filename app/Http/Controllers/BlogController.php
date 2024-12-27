@@ -28,8 +28,7 @@ class BlogController extends Controller
     {
         $New = Blog::create($request->except('image', 'gallery'));
 
- 
-        $this->mediaService->updateMedia(
+        $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
             $request->input('deleteImage'),
@@ -39,7 +38,7 @@ class BlogController extends Controller
 
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $file) {
-                $this->mediaService->handleMediaUpload(
+                $this->mediaService->handleMultipleMediaUpload(
                     $New,
                     $file,
                     'gallery',
