@@ -19,7 +19,7 @@
 </section>
     <div class="container container-fluid">
         <div class="row">
-            @foreach($Proje->where('category', $Detail->id) as $item)
+            @foreach($Project->where('category', $Detail->id) as $item)
                 <div class="col-lg-4 mb-4">
                     <a href="{{ route('servicedetail' , $item->slug)}}" title="{{ $item->title }}">
 

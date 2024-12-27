@@ -6,14 +6,11 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectCategory;
 use App\Http\Requests\ProjectRequest;
-use Illuminate\Support\Facades\Artisan;
 
 class ProjectController extends Controller
 {
 
-    public function __construct(){
-        Artisan::call('cache:clear');
-    }
+   
 
     public function index()
     {
@@ -31,26 +28,30 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $New = new Project;
-        $New->title = $request->title;
-        $New->category = $request->category;
-        $New->short = $request->short;
-        $New->desc = $request->desc;
 
-        $New->seo_desc = $request->seo_desc;
-        $New->seo_key = $request->seo_key;
-        $New->seo_title = $request->seo_title;
+        $New = Project::create($request->except('image', 'gallery'));
+        
+        $this->mediaService->updateMedia(
+            $New, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        if($request->hasfile('image')){
-            $New->addMedia($request->image)->preservingOriginal()->toMediaCollection('page');
-        }
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $New->addMedia($item)->preservingOriginal()->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $New,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
 
-        $New->save();
+
 
         toast(SWEETALERT_MESSAGE_CREATE, 'success');
         return redirect()->route('project.index');
@@ -70,38 +71,29 @@ class ProjectController extends Controller
         return view('backend.project.edit', compact('Edit', 'Kategori'));
     }
 
-    public function update(ProjectRequest $request, $id)
+    public function update(ProjectRequest $request, Project $update)
     {
-        $Update = Project::findOrFail($id);
-        $Update->title = $request->title;
-        $Update->category = $request->category;
-        $Update->short = $request->short;
-        $Update->desc = $request->desc;
+        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
 
-        $Update->seo_title = $request->seo_title;
-        $Update->seo_desc = $request->seo_desc;
-        $Update->seo_key = $request->seo_key;
-
-        if ($request->removeImage == "1") {
-            $Update->media()->where('collection_name', 'page')->delete();
-        }
-
-        if ($request->hasFile('image')) {
-            $Update->media()->where('collection_name', 'page')->delete();
-            $Update->addMedia($request->image)
-                ->preservingOriginal()
-                ->toMediaCollection('page');
-        }
+        $this->mediaService->updateMedia(
+            $update, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
         if ($request->hasFile('gallery')) {
-            foreach ($request->gallery as $item) {
-                $Update->addMedia($item)
-                    ->preservingOriginal()
-                    ->toMediaCollection('gallery');
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $update,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
-
-        $Update->save();
 
         toast(SWEETALERT_MESSAGE_UPDATE, 'success');
         return redirect()->route('project.index');

@@ -26,28 +26,29 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
-        $New = new Blog;
-        $New->title = $request->title;
-        $New->category = $request->category;
-        $New->short = $request->short;
-        $New->desc = $request->desc;
+        $New = Blog::create($request->except('image', 'gallery'));
 
-        $New->seo_desc = $request->seo_desc;
-        $New->seo_key = $request->seo_key;
-        $New->seo_title = $request->seo_title;
+ 
+        $this->mediaService->updateMedia(
+            $New, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        if($request->hasfile('image')){
-            $New->addMedia($request->image)->withResponsiveImages()->toMediaCollection('page');
-        }
-
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $New->addMedia($item)->withResponsiveImages()->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $New,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
 
-
-        $New->save();
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('blog.index');
 
@@ -68,35 +69,30 @@ class BlogController extends Controller
         return view('backend.blog.edit', compact('Edit', 'Kategori'));
     }
 
-    public function update(PageRequest $request, $id)
+    public function update(BlogRequest $request, $id, Blog $update)
     {
 
-        $Update = Blog::findOrFail($id);
+        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
 
-        $Update->title = $request->title;
-        $Update->category = $request->category;
-        $Update->short = $request->short;
-        $Update->desc = $request->desc;
-        $Update->seo_title = $request->seo_title;
-        $Update->seo_desc = $request->seo_desc;
-        $Update->seo_key = $request->seo_key;
-        $Update->save();
+        $this->mediaService->updateMedia(
+            $update, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        if($request->removeImage == "1"){
-            $Update->media()->where('collection_name', 'page')->delete();
-        }
-
-        if ($request->hasFile('image')) {
-            $Update->media()->where('collection_name', 'page')->delete();
-            $Update->addMedia($request->image)->withResponsiveImages()->toMediaCollection('page');
-        }
-
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $Update->addMedia($item)->withResponsiveImages()->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $update,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
-
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
         return redirect()->route('blog.index');
 

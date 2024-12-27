@@ -22,19 +22,19 @@ class ViewShareProvider extends ServiceProvider
     {
 
         $Pages = Cache::remember('pages',now()->addYear(1), function () {
-            return Page::with('getCategory')->get();
+            return Page::with('getCategory','media')->get();
         });
 
         $Service = Cache::remember('service',now()->addYear(1), function () {
-            return Service::all();
+            return Service::with('getCategory','media')->get();
         });
 
         $Blog = Cache::remember('blog',now()->addYear(1), function () {
-            return Blog::all();
+            return Blog::with('getCategory','media')->get();
         });
 
         $Project = Cache::remember('project',now()->addYear(1), function () {
-            return Project::all();
+            return Project::with('getCategory','media')->get();
         });
 
         $ProjectCategory = Cache::remember('projectCategory',now()->addYear(1), function () {

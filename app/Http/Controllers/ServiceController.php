@@ -31,23 +31,26 @@ class ServiceController extends Controller
 
     public function store(ServiceRequest $request)
     {
-        $New = new Service;
-        $New->title = $request->title;
-        $New->category = $request->category;
-        $New->short = $request->short;
-        $New->desc = $request->desc;
 
-        $New->seo_desc = $request->seo_desc;
-        $New->seo_key = $request->seo_key;
-        $New->seo_title = $request->seo_title;
+        $New = Service::create($request->except('image', 'gallery'));
 
-        if($request->hasfile('image')){
-            $New->addMedia($request->image)->withResponsiveImages()->toMediaCollection('page');
-        }
+        $this->mediaService->updateMedia(
+            $New, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $New->addMedia($item)->withResponsiveImages()->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $New,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
 
@@ -76,34 +79,29 @@ class ServiceController extends Controller
         return view('backend.service.edit', compact('Edit', 'Kategori'));
     }
 
-    public function update(ServiceRequest $request, $id)
+    public function update(ServiceRequest $request, Service $update)
     {
-        $Update = Service::findOrFail($id);
-        $Update->title = $request->title;
-        $Update->category = $request->category;
-        $Update->short = $request->short;
-        $Update->desc = $request->desc;
+        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
 
-        $Update->seo_title = $request->seo_title;
-        $Update->seo_desc = $request->seo_desc;
-        $Update->seo_key = $request->seo_key;
+        $this->mediaService->updateMedia(
+            $update, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        if($request->removeImage == "1"){
-            $Update->media()->where('collection_name', 'page')->delete();
-        }
-
-        if ($request->hasFile('image')) {
-            $Update->media()->where('collection_name', 'page')->delete();
-            $Update->addMedia($request->image)->withResponsiveImages()->toMediaCollection('page');
-        }
-
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $Update->addMedia($item)->withResponsiveImages()->toMediaCollection('gallery');
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $update,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
             }
         }
-
-        $Update->save();
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
         return redirect()->route('service.index');

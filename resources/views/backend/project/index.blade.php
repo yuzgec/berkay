@@ -38,10 +38,16 @@
                     @foreach($All as $item)
                     <tr id="page_{{$item->id}}">
                         <td>
-                            <span class="avatar me-2" style="background-image: url({{$item->getFirstMediaUrl()}})"></span>
+                            <a data-fslightbox="gallery" href="{{ $item->getFirstMediaUrl('page', 'thumb')}}">
+                                <img src="{{ $item->getFirstMediaUrl('page', 'thumb')}}" class="avatar me-2">
+                            </a>
                         </td>
                         <td>
-                            <div class="font-weight-medium">{{ $item->title }}</div>
+                            <div class="font-weight-medium">
+                                <a href="{{ route('project.edit', $item->id)}}">
+                                    {{ $item->title }}
+                                </a>
+                            </div>
                         </td>
                         <td class="text-center">
                             <label class="form-check form-check-single form-switch">

@@ -28,21 +28,26 @@ class ProjectCategoryController extends Controller
 
     public function store(ProjectCategoryRequest $request)
     {
-        $New = new ProjectCategory;
+         $New = ProjectCategory::create($request->except('image', 'gallery'));
+        
+        $this->mediaService->updateMedia(
+            $New, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        $New->title = $request->title;
-
-        $New->short = $request->short;
-        $New->desc = $request->desc;
-
-        $New->seo_desc = $request->seo_desc;
-        $New->seo_key = $request->seo_key;
-        $New->seo_title = $request->seo_title;
-
-        $New->save();
-
-        if($request->image){
-            $New->addMedia($request->image)->toMediaCollection();
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $New,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
+            }
         }
 
         if ($request->parent_id){
@@ -69,32 +74,36 @@ class ProjectCategoryController extends Controller
         return view('backend.projectcategory.edit', compact('Edit', 'Kategori'));
     }
 
-    public function update(ProjectCategoryRequest $request, $id)
+    public function update(ProjectCategoryRequest $request, $id, ProjectCategory $update)
     {
 
-        //dd($request->all());
-        $Update = ProjectCategory::findOrFail($id);
+        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
 
-        $Update->title = $request->title;
-        $Update->short = $request->short;
-        $Update->desc = $request->desc;
+        $this->mediaService->updateMedia(
+            $update, 
+            $request->file('image'),
+            $request->input('deleteImage'),
+            'page',
+            false
+        );
 
-        $Update->seo_title = $request->seo_title;
-        $Update->seo_desc = $request->seo_desc;
-        $Update->seo_key = $request->seo_key;
-
-        $Update->parent_id  = $request->parent_id;
-
-        $Update->save();
-
-        if ($request->hasFile('image')) {
-            $Update->media()->delete();
-            $Update->addMedia($request->image)->toMediaCollection();
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $this->mediaService->handleMediaUpload(
+                    $update,
+                    $file,
+                    'gallery',
+                    false,
+                    true
+                );
+            }
         }
+
+
 
         if ($request->parent){
             $node = ProjectCategory::find($request);
-            $node->appendNode($Update);
+            $node->appendNode($update);
         }
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
