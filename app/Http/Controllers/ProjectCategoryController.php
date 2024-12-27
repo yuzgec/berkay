@@ -45,7 +45,7 @@ class ProjectCategoryController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
@@ -94,7 +94,7 @@ class ProjectCategoryController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }

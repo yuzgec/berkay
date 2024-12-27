@@ -42,7 +42,7 @@ class BlogController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
@@ -87,7 +87,7 @@ class BlogController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }

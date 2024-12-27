@@ -46,7 +46,7 @@ class ProjectController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
@@ -89,7 +89,7 @@ class ProjectController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }

@@ -48,7 +48,7 @@ class ServiceController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
@@ -97,7 +97,7 @@ class ServiceController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }

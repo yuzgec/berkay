@@ -48,7 +48,7 @@ class PageController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
@@ -92,7 +92,7 @@ class PageController extends Controller
                     $file,
                     'gallery',
                     false,
-                    true
+                    false
                 );
             }
         }
