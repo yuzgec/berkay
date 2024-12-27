@@ -27,12 +27,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-
                     <x-form-inputtext label="Başlık" name="title"/>
                     <x-form-select label="Kategori" name="category" :list="$Kategori"/>
                     <x-form-textarea label="Açıklama" name="desc"/>
-                    
-
                 </div>
             </div>
 
@@ -50,7 +47,7 @@
                 </div>
                 <div class="form-group mb-3 row p-2">
                     <div class="col">
-                        <img src="{{ $Edit->getFirstMediaUrl() }}" class="img-fluid mb-2" width="250px" alt="Image">
+                        <img src="{{ $Edit->getFirstMediaUrl('page', 'thumb')}}" class="img-fluid mb-2" width="250px" alt="Image">
                     </div>
                 </div>
                 <div class="p-2">
@@ -62,7 +59,7 @@
                 <div class="card-header">
                     <h4 class="card-title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /><line x1="9" y1="13" x2="15" y2="13" /></svg>
-                        Blog Galeri
+                        Proje Galeri
                     </h4>
                 </div>
                 <div class="p-2">
@@ -73,9 +70,50 @@
                 </div>
 
             </div>
+            {{Form::close()}}
+            
+            @if($Edit->getFirstMediaUrl('gallery'))
+            <div class="card mt-2" style="height: calc(30rem + 10px)">
+            <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+            <div class="table-responsive ">
+                <table class="table table-hover table-striped table-bordered table-center">
+                    <thead>
+                    <tr>
+                        <th>Resim</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tbody id="orders">
+                    <div class="divide-y">
+                    @foreach($Edit->getMedia('gallery') as $item)
+                        <tr id="gallery_{{$item->id}}">
+                            <td>
+                                {{ $item }}
+                            </td>
+                            <td>
+                                <form action="{{route('service.deleteGaleriDelete', $Edit->id)}}" method="POST">
+                                    <input type="hidden" name="image_id" value="{{$item->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Resim Sil">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="4" y1="7" x2="20" y2="7"></line><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path></svg>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        @endif
         </div>
     </div>
-    {{Form::close()}}
+
+
+    
 @endsection
 
 @section('customJS')

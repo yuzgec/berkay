@@ -29,19 +29,19 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
 
-        $New = Project::create($request->except('image', 'gallery'));
+        //dd($request->all());
+        $New = Project::create($request->except('token','image', 'images'));
         
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
-                $this->mediaService->handleMultipleMediaUpload(
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $this->mediaService->handleMediaUpload(
                     $New,
                     $file,
                     'gallery',
@@ -73,18 +73,17 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, Project $update)
     {
-        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
+        tap($update)->update($request->except('image', 'images'));
 
         $this->mediaService->updateMedia(
             $update, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMediaUpload(
                     $update,
                     $file,

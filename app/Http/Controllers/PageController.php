@@ -31,19 +31,18 @@ class PageController extends Controller
 
     public function store(PageRequest $request)
     {
-        $New = Page::create($request->except('image', 'gallery'));
+        $New = Page::create($request->except('image', 'images'));
 
         
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMultipleMediaUpload(
                     $New,
                     $file,
@@ -76,7 +75,7 @@ class PageController extends Controller
     public function update(PageRequest $request, $id, Page $update)
     {
         //dd($request->all());
-        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
+        tap($update)->update($request->except('image', 'images', 'deleteImage', 'deleteCover'));
 
         $this->mediaService->updateMedia(
             $update, 
@@ -86,8 +85,8 @@ class PageController extends Controller
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMediaUpload(
                     $update,
                     $file,

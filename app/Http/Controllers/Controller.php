@@ -12,7 +12,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
     protected $mediaService;
 
     public function __construct(MediaService $mediaService)

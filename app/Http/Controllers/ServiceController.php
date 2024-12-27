@@ -32,18 +32,17 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
 
-        $New = Service::create($request->except('image', 'gallery'));
+        $New = Service::create($request->except('image', 'images'));
 
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMultipleMediaUpload(
                     $New,
                     $file,
@@ -81,7 +80,7 @@ class ServiceController extends Controller
 
     public function update(ServiceRequest $request, Service $update)
     {
-        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
+        tap($update)->update($request->except('image', 'images', 'deleteImage', 'deleteCover'));
 
         $this->mediaService->updateMedia(
             $update, 
@@ -91,8 +90,8 @@ class ServiceController extends Controller
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMediaUpload(
                     $update,
                     $file,

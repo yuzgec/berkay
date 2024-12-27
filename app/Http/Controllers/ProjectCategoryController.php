@@ -28,7 +28,7 @@ class ProjectCategoryController extends Controller
 
     public function store(ProjectCategoryRequest $request)
     {
-         $New = ProjectCategory::create($request->except('image', 'gallery'));
+         $New = ProjectCategory::create($request->except('image', 'images'));
         
          $this->mediaService->handleMediaUpload(
             $New, 
@@ -38,8 +38,8 @@ class ProjectCategoryController extends Controller
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMultipleMediaUpload(
                     $New,
                     $file,
@@ -77,7 +77,7 @@ class ProjectCategoryController extends Controller
     public function update(ProjectCategoryRequest $request, $id, ProjectCategory $update)
     {
 
-        tap($update)->update($request->except('image', 'gallery', 'deleteImage', 'deleteCover'));
+        tap($update)->update($request->except('image', 'images', 'deleteImage', 'deleteCover'));
 
         $this->mediaService->updateMedia(
             $update, 
@@ -87,8 +87,8 @@ class ProjectCategoryController extends Controller
             false
         );
 
-        if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
                 $this->mediaService->handleMediaUpload(
                     $update,
                     $file,

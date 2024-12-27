@@ -64,7 +64,7 @@
                         </div>
                         @if($Edit->getFirstMediaUrl('page'))
                         <label class="form-check form-check-single form-switch mb-1"  >
-                            <input class="form-check-input switch" type="checkbox" name="removeImage" value="0">
+                            <input class="form-check-input switch" type="checkbox" name="deleteImage" value="0">
                             <span style="margin-left: 15px" class="">Resmi Kaldır</span>
                         </label>
                         @endif

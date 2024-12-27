@@ -31,7 +31,6 @@ class BlogController extends Controller
         $this->mediaService->handleMediaUpload(
             $New, 
             $request->file('image'),
-            $request->input('deleteImage'),
             'page',
             false
         );

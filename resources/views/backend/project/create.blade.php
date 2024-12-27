@@ -30,7 +30,7 @@
                     </h4>
                 </div>
                 <div class="p-2">
-                    <x-form-file label="" name="image"></x-form-file>
+                    <x-form-file label="" name="image"/>
                 </div>
             </div>
             <div class="card mt-2" >
