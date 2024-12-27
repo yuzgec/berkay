@@ -21,7 +21,7 @@
         <div class="row">
             @foreach($Project->where('category', $Detail->id) as $item)
                 <div class="col-lg-4 mb-4">
-                    <a href="{{ route('servicedetail' , $item->slug)}}" title="{{ $item->title }}">
+                    <a href="{{ route('projedetail' , $item->slug)}}" title="{{ $item->title }}">
 
                     <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-lighten thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom">
                         <span class="thumb-info-wrapper">

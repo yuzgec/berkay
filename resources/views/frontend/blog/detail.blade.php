@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <a href="{{ route('contactus')}}" class="btn btn-light btn-outline custom-btn-border-radius font-weight-bold text-color-light text-color-hover-dark bg-color-hover-light btn-px-5 btn-py-3">
-                                Randevu Oluştur
+                                İletişime Geç
                             </a>
                         </div>
                     </div>
