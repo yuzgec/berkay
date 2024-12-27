@@ -6,11 +6,14 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectCategory;
 use App\Http\Requests\ProjectRequest;
+use Illuminate\Support\Facades\Artisan;
 
 class ProjectController extends Controller
 {
 
-   
+    public function __construct(){
+        Artisan::call('cache:clear');
+    }
 
     public function index()
     {
@@ -45,7 +48,7 @@ class ProjectController extends Controller
                     $New,
                     $file,
                     'gallery',
-                    false,
+                    true,
                     false
                 );
             }
@@ -84,11 +87,11 @@ class ProjectController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $this->mediaService->handleMediaUpload(
+                $this->mediaService->updateMedia(
                     $update,
                     $file,
                     'gallery',
-                    false,
+                    true,
                     false
                 );
             }
