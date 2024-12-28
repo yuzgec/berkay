@@ -92,7 +92,6 @@ class PageController extends Controller
             );
         }
 
-
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
         return redirect()->route('page.index');
 

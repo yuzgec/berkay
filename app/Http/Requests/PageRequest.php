@@ -17,8 +17,8 @@ class PageRequest extends FormRequest
         return [
             'title'                 => 'required|min:6|max:99|unique:page,title,'.$this->id,
             'category'              => 'required',
-            'image'                 => 'image|max:2048|mimes:jpg,jpeg,png,gif',
-            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'                 => 'image|mimes:jpg,jpeg,png,gif',
+            'images.*'              => 'image|mimes:jpg,jpeg,png,gif',
         ];
     }
 
@@ -30,13 +30,10 @@ class PageRequest extends FormRequest
             'title.min'                 => 'Sayfa başlığı en fazla 6 karakter olabilir',
             'title.unique'              => 'Sayfa başlığı daha önce eklenmiş',
             'category.required'         => 'Sayfa Kategori seçimi zorunludur.',
-            'image.max'                 => 'Resim boyutu en yüksek 2048kb(2mb) olmalıdır',
             'image.mimes'               => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
             'image.image'               => 'Resim formatı uygun değildir.',
-
-            'gallery.*.max'               => 'Resim boyutu en yüksek 2048kb(2mb) olmalıdır',
-            'gallery.*.mimes'             => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
-            'gallery.*.image'             => 'Resim formatı uygun değildir.',
+            'images.*.mimes'           => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
+            'images.*.image'           => 'Resim formatı uygun değildir.',
 
         ];
     }

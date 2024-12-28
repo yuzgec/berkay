@@ -1,9 +1,8 @@
 @extends('backend.layout.app')
-@section('title', $Edit->title.' | Sayfa Düzenle')
+@section('title', $Edit->title.' | Hizmet Düzenle')
 @section('content')
-    {{Form::model($Edit, ["route" => ["page.update", $Edit->id],'enctype' => 'multipart/form-data'])}}
-    {{ Form::hidden('id', $Edit->id) }}
-
+{{Form::model($Edit, ["route" => ["page.update", $Edit->id],'enctype' => 'multipart/form-data'])}}
+{{ Form::hidden('id', $Edit->id) }}
     @method('PUT')
     <div class="row">
         <div class="col-12 col-md-9">

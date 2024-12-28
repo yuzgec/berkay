@@ -18,7 +18,7 @@ class ProjectRequest extends FormRequest
             'title'                 => 'required|min:6|max:99|unique:project,title,'.$this->id,
             'category'              => 'required',
             'image'                 => 'image|mimes:jpg,jpeg,png,gif',
-            'gallery.*'             => 'image|mimes:jpg,jpeg,png,gif',
+            'images.*'              => 'image|mimes:jpg,jpeg,png,gif',
         ];
     }
 
@@ -32,8 +32,8 @@ class ProjectRequest extends FormRequest
             'category.required'         => 'Proje Kategori seçimi zorunludur.',
             'image.mimes'               => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
             'image.image'               => 'Resim formatı uygun değildir.',
-            'gallery.*.mimes'           => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
-            'gallery.*.image'           => 'Resim formatı uygun değildir.',
+            'images.*.mimes'           => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
+            'images.*.image'           => 'Resim formatı uygun değildir.',
         ];
     }
 }
