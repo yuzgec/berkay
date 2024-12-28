@@ -1,7 +1,7 @@
 @extends('frontend.layout.app')
 @section('content')
 
-<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-9" style="background-image: url({{ $Detail->getFirstMediaUrl('page', 'img') }});">
+<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-7" style="background-image: url({{ $Detail->getFirstMediaUrl('page', 'img') }});">
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-12 align-self-center p-static order-2 text-center">
