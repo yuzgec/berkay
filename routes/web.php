@@ -14,7 +14,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/iletisim', [HomeController::class, 'contact'])->name('contactus');
 Route::get('/kurumsal', [HomeController::class, 'corporate'])->name('corporate');
 Route::get('/sayfa/{url}', [HomeController::class, 'corporatedetail'])->name('corporatedetail');
-Route::get('/calisma-alanlarimiz', [HomeController::class, 'service'])->name('service');
+Route::get('/hizmetlerimiz', [HomeController::class, 'service'])->name('service');
 Route::get('/hizmet/{url}', [HomeController::class, 'servicedetail'])->name('servicedetail');
 Route::get('/makaleler', [HomeController::class, 'blog'])->name('blog');
 Route::get('/makale/{url}', [HomeController::class, 'blogdetail'])->name('blogdetail');
@@ -24,6 +24,7 @@ Route::post('/form', [HomeController::class, 'form'])->name('form');
 Route::get('/ekibimiz', [HomeController::class, 'team'])->name('team');
 Route::get('/ekip/{url}', [HomeController::class, 'teamdetail'])->name('teamdetail');
 
+Route::get('/proje', [HomeController::class, 'proje'])->name('proje.index');
 Route::get('/projeler/{url}', [HomeController::class, 'proje'])->name('proje');
 Route::get('/proje/{url}', [HomeController::class, 'projedetail'])->name('projedetail');
 

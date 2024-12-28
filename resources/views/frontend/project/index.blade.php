@@ -19,20 +19,28 @@
 </section>
 <div class="container container-fluid">
     <div class="masonry-loader masonry-loader-loaded">
-        <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'itemSelector': '.masonry-item'}" style="position: relative;">
-            @foreach($Project->where('category', $Detail->id) as $item)
-            <div class="masonry-item no-default-style col-md-4 mb-3" style="position: absolute; left: 0px; top: 0px;">
-                <a href="{{ route('projedetail' , $item->slug)}}" title="{{ $item->title }}">
-                    <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-lighten thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom">
-                        <span class="thumb-info-wrapper">
-                            <img src="{{ $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title }}">
-                            <span class="thumb-info-title">
-                                <span class="thumb-info-inner line-height-1">{{ $item->title }}</span>
-                            </span>
+        <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative;">
+            @foreach ($Project as $item)
+            <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2 mb-2" style="position: absolute; left: 0px; top: 0px;">
+                
+            <span class="thumb-info thumb-info-swap-content thumb-info-centered-icons">
+                <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                    <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
+                    <span class="thumb-info-action">
+                        <a href="{{ route('projedetail', $item->slug)}}">
+                            <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-link text-dark text-dark"></i></span>
+                        </a>
+                    </span>
+                    <span class="thumb-info-title bottom-30 bg-transparent w-100 mw-100 p-0 text-center">
+                        <span class="thumb-info-swap-content-wrapper">
+                            <span class="thumb-info-inner">{{ $item->title}}</span>
+                            <span class="thumb-info-type text-light m-0 float-none">Projeyi İncele</span>
                         </span>
                     </span>
-                </a>
+                </span>
+            </span>
             </div>
+
             @endforeach
         </div>
         <div class="bounce-loader">

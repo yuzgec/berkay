@@ -124,7 +124,7 @@
                         <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
                         <span class="thumb-info-action">
                             <a href="{{ route('projedetail', $item->slug)}}">
-                                <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle text-dark text-dark"></i></span>
+                                <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-link text-dark text-dark"></i></span>
                             </a>
                         </span>
                         <span class="thumb-info-title bottom-30 bg-transparent w-100 mw-100 p-0 text-center">

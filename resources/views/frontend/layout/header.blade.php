@@ -24,7 +24,7 @@
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a href="" class="nav-link dropdown-toggle">Hizmetlerimiz<i class="fas fa-chevron-down"></i></a>
+										<a href="{{ route('service')}}" class="nav-link dropdown-toggle">Hizmetlerimiz<i class="fas fa-chevron-down"></i></a>
 										<ul class="dropdown-menu">
 											@foreach ($Service as $item)
 											<li><a href="{{ route('servicedetail', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
@@ -32,7 +32,7 @@
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a href="" class="nav-link dropdown-toggle">Projeler<i class="fas fa-chevron-down"></i></a>
+										<a href="{{ route('service')}}" class="nav-link dropdown-toggle">Projeler<i class="fas fa-chevron-down"></i></a>
 										<ul class="dropdown-menu">
 											@foreach ($ProjectCategory as $item)
 											<li><a href="{{ route('proje', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
