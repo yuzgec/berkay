@@ -116,9 +116,8 @@
         <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
             <div class="masonry-loader masonry-loader-loaded">
                 <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative;">
-                    @foreach ($Project->random(15) as $item)
-
-                    <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2" style="position: absolute; left: 0px; top: 0px;">
+                    @foreach ($Project->random(20) as $item)
+                    <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2 mb-2" style="position: absolute; left: 0px; top: 0px;">
                         <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation animated maskDown appear-animation-visible" href="img/demos/architecture-2/generic/generic-5.jpg" data-appear-animation="maskDown" data-appear-animation-delay="500" style="animation-delay: 500ms;">
                             <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid rounded-0" alt="">
                         </a>
@@ -134,56 +133,6 @@
         </div>
     </div>
 
-    <section class="section my-0 py-5 border-0 bg-transparent">
-        <div class="container container-xl-custom">
-            <div class="row justify-content-between align-items-center py-5">
-                <div class="col-lg-3">
-                    <h4 class="text-primary text-3 font-weight-bold mb-2">{{config('settings.siteTitle')}}</h4>
-                    <h3 class="mb-3 font-weight-bold text-6">Tamamlanan Projelerimiz</h3>
-                    <p class="mb-5 mb-lg-0">Berkay Dekorasyon olarak başarıyla tamamladığımız bazı referans projelerimiz</p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="carousel-half-full-width-wrapper carousel-half-full-width-right">
-                        <div class="owl-carousel owl-theme carousel-half-full-width-right nav-style-1 nav-dark nav-font-size-lg mb-0 owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'responsive': {'0': {'items': 1}, '768': {'items': 3}, '992': {'items': 3}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}" style="height: auto;">
-                            
-                            <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(-0px, 0px, 0px); transition: all">
-                                    @foreach ($Project->random(10) as $item)
-                                        
-                                
-                                    <div class="owl-item cloned" style="width: 404.333px; margin-right: 20px;">
-                                        <div class="p-relative">
-                                            <span class="thumb-info thumb-info-swap-content anim-hover-inner-wrapper rounded">
-                                                <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
-                                                    <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="">
-                                                </span>
-                                            </span>
-                                            <h4 class="font-weight-bold mt-4">{{ $item->title}}</h4>
-                                            {{-- <ul class="list list-icons list-primary font-weight-medium mt-3">
-                                                <li><i class="fas fa-check text-color-primary"></i> Fusce sit amet orci quis arcu vestibulum.</li>
-                                                <li><i class="fas fa-check text-color-primary"></i> Amet orci quis arcu vestibulum.</li>
-                                                <li><i class="fas fa-check text-color-primary"></i> Orci quis arcu vestibulum.</li>
-                                            </ul> --}}
-                                            <a href="{{ route('projedetail', $item->slug)}}" class="btn btn-arrow-effect-1 ws-nowrap text-primary text-2 bg-transparent border-0 px-0 text-uppercase stretched-link">
-                                                Proje Detaylarına Bak <i class="fas fa-arrow-right ms-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="owl-nav">
-                                <button type="button" role="presentation" class="owl-prev"></button>
-                                <button type="button" role="presentation" class="owl-next"></button>
-                            </div>
-                            <div class="owl-dots disabled">
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="section section-height-3 bg-primary border-0 m-0">
         <div class="container container-xl-custom">
