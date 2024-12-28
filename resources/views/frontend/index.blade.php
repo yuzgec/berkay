@@ -108,10 +108,12 @@
 
 
     <div class="container container-xl-custom py-4 my-3">
-        <div class="col-lg-3">
-            <h4 class="text-primary text-3 font-weight-bold mb-2">{{config('settings.siteTitle')}}</h4>
-            <h3 class="mb-3 font-weight-bold text-6">Tamamlanan Projelerimiz</h3>
-            <p class="mb-5 mb-lg-0">Berkay Dekorasyon olarak başarıyla tamamladığımız bazı referans projelerimiz</p>
+        <div class="col">
+            <div class="heading heading-border heading-middle-border heading-middle-border-center heading-border-xl">
+                <h2 class="font-weight-normal">Tamamlanan <strong class="font-weight-extra-bold">Projelerimiz</strong></h2>
+                <p class="mb-5 mb-lg-0">Berkay Dekorasyon olarak başarıyla tamamladığımız bazı referans projelerimiz</p>
+
+            </div>
         </div>
         <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
             <div class="masonry-loader masonry-loader-loaded">
