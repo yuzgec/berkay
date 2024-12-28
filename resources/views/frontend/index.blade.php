@@ -105,6 +105,30 @@
             </div>
         </div>
     </section>
+
+
+    <div class="container container-xl-custom py-4 my-3">
+        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+            <div class="masonry-loader masonry-loader-loaded">
+                <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative; height: 507.328px;">
+                    @foreach ($Project->random(15) as $item)
+
+                    <div class="masonry-item no-default-style col-6 overflow-hidden px-0" style="position: absolute; left: 0px; top: 0px;">
+                        <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation animated maskDown appear-animation-visible" href="img/demos/architecture-2/generic/generic-5.jpg" data-appear-animation="maskDown" data-appear-animation-delay="500" style="animation-delay: 500ms;">
+                            <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid rounded-0" alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="bounce-loader">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="section my-0 py-5 border-0 bg-transparent">
         <div class="container container-xl-custom">
             <div class="row justify-content-between align-items-center py-5">

@@ -1,6 +1,5 @@
 @extends('frontend.layout.app')
 @section('content')
-
 <section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-7" style="background-image: url({{ $Detail->getFirstMediaUrl('page', 'img') }});">
     <div class="container">
         <div class="row mt-3">
@@ -20,10 +19,7 @@
 </section>
 
 <div class="container py-2">
-    <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-        
-    </ul>
-
+    <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}"></ul>
     <div class="sort-destination-loader mt-4 pt-2 sort-destination-loader-loaded">
         <div class="row portfolio-list sort-destination lightbox" data-sort-id="portfolio" data-filter="*" style="position: relative;" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}" data-filter="*" style="position: relative;">
             @foreach ($Detail->getMedia('gallery') as $item )
@@ -37,7 +33,6 @@
                                     <span class="thumb-info-inner">{{ $Detail->title }}</span>
                                     <span class="thumb-info-type">Berkay Dekorasyon</span>
                                 </span>
-                               
                             </span>
                         </span>
                     </a>
@@ -46,9 +41,14 @@
             @endforeach
             
         </div>
-    <div class="bounce-loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>
-
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
 </div>
+
 @if($Detail->desc)
 <div class="container">
     <div class="row pb-4">
