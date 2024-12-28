@@ -109,7 +109,7 @@
 
     <div class="container container-xl-custom py-4 my-3">
         <div class="col">
-            <div class="heading heading-border heading-middle-border heading-middle-border-center heading-border-xl mb-2 mt-3">
+            <div class="heading heading-border heading-middle-border heading-middle-border-center heading-border-xl mb-5 mt-3">
                 <h2 class="font-weight-normal">Tamamlanan <strong class="font-weight-extra-bold">Projelerimiz</strong></h2>
                 <p class="mb-5 mb-lg-0">Berkay Dekorasyon olarak başarıyla tamamladığımız bazı referans projelerimiz</p>
             </div>
