@@ -18,29 +18,33 @@
     </div>
 </section>
     <div class="container container-fluid">
-        
-        <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-        
-        </ul>
-        <div class="row" data-sort-id="portfolio" data-filter="*" style="position: relative;">
+        <div class="row">
 
 
-            @foreach($Project->where('category', $Detail->id) as $item)
-                <div class="col-lg-4 mb-4 portfolio-item">
-                    <a href="{{ route('projedetail' , $item->slug)}}" title="{{ $item->title }}">
-
-                    <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-lighten thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom">
-                        <span class="thumb-info-wrapper">
-                            <img src="{{ $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title }}">
-                            <span class="thumb-info-title">
-                                <span class="thumb-info-inner line-height-1">{{ $item->title }}</span>
+            <div class="masonry-loader masonry-loader-loaded">
+                <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'itemSelector': '.masonry-item'}" style="position: relative;">
+                    <div class="masonry-item no-default-style col-md-4" style="position: absolute; left: 0px; top: 0px;">
+                        @foreach($Project->where('category', $Detail->id) as $item)
+                        <a href="{{ route('projedetail' , $item->slug)}}" title="{{ $item->title }}">
+    
+                        <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-lighten thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom">
+                            <span class="thumb-info-wrapper">
+                                <img src="{{ $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title }}">
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner line-height-1">{{ $item->title }}</span>
+                                </span>
                             </span>
                         </span>
-                    </span>
-                    </a>
+                        </a>
+             
+    
+                @endforeach
+                    </div>
                 </div>
+            <div class="bounce-loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>
 
-            @endforeach
+            
+           
         </div>
     </div>
 @endsection
