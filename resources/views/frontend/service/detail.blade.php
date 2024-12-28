@@ -1,7 +1,7 @@
 @extends('frontend.layout.app')
 @section('content')
 
-<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-9" style="background-image: url({{ $Detail->getFirstMediaUrl('page') }});">
+<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-9" style="background-image: url({{ $Detail->getFirstMediaUrl('page', 'img') }});">
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-12 align-self-center p-static order-2 text-center">
@@ -26,20 +26,18 @@
                 <div class="card box-shadow-1 custom-border-radius-1 mb-5" id="form">
                     <div class="card-body z-index-1 py-4 my-3">
                         @if($Detail->getFirstMediaUrl('page'))
-                            <img src="{{ $Detail->getFirstMediaUrl('page') }}" class="img-fluid mb-3" alt="{{ $Detail->title }}">
+                            <img src="{{ $Detail->getFirstMediaUrl('page', 'img') }}" class="img-fluid mb-3" alt="{{ $Detail->title }}">
                         @endif
                         {!!  $Detail->desc !!}
                     </div>
 
-                 <div class="row align-items-center text-center py-5 my-3">
-                @for ($i=1; $i <= 10; $i++)
-                <div class="col-sm-3 mb-5">
-                    <img src="/frontend/logolar/{{$i}}.jpg" alt class="img-fluid" style="max-width: 250px;" />
-                </div>
-                @endfor
-            
-                
-            </div>
+                    <div class="row align-items-center text-center py-5 my-3">
+                        @for ($i=1; $i <= 10; $i++)
+                        <div class="col-sm-3 mb-5">
+                            <img src="/frontend/logolar/{{$i}}.jpg" alt class="img-fluid" style="max-width: 250px;" />
+                        </div>
+                        @endfor
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 position-relative">
