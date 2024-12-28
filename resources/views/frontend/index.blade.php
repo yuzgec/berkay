@@ -124,7 +124,7 @@
                         <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
                             <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
                             <span class="thumb-info-action">
-                                <a href="{{ route('projedetail', $item>slug)}}">
+                                <a href="{{ route('projedetail', $item->slug)}}">
                                     <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle text-dark text-dark"></i></span>
                                 </a>
                             </span>
