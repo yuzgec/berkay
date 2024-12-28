@@ -7,7 +7,6 @@
             <div class="col-md-12 align-self-center p-static order-2 text-center">
                 <h1><strong>{{ $Detail->title }}</strong></h1>
                 <span class="d-block text-4">{{ config('settings.siteTitle')}}</span>
-
             </div>
             <div class="col-md-12 align-self-center order-1">
                 <ul class="breadcrumb breadcrumb-light d-block text-center">
@@ -20,15 +19,10 @@
     </div>
 </section>
 
-
-
 <div class="container py-2">
     <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
         
     </ul>
-
-
-
 
     <div class="sort-destination-loader mt-4 pt-2 sort-destination-loader-loaded">
         <div class="row portfolio-list sort-destination lightbox" data-sort-id="portfolio" data-filter="*" style="position: relative;" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}" data-filter="*" style="position: relative;">

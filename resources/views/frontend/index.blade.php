@@ -118,7 +118,7 @@
                         <div class="owl-carousel owl-theme carousel-half-full-width-right nav-style-1 nav-dark nav-font-size-lg mb-0 owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'responsive': {'0': {'items': 1}, '768': {'items': 3}, '992': {'items': 3}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}" style="height: auto;">
                             
                             <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(-2545px, 0px, 0px); transition: all;width:100000px">
+                                <div class="owl-stage" style="transform: translate3d(-0px, 0px, 0px); transition: all">
                                     @foreach ($Project->random(10) as $item)
                                         
                                 
