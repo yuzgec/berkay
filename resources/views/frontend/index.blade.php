@@ -14,7 +14,7 @@
                                     <a href="{{route('servicedetail',$item->slug)}}" title="{{ $item->title}}" class="text-decoration-none">
                                         <div class="card custom-card-style-1 border-radius-0">
                                             <div class="card-body text-center p-5 mb-4">
-                                                <img width="75" height="75" src="/frontend/architecture-2/icons/house-plant.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary mt-3 mb-4 pb-3'}" />
+                                                <img width="75" height="75" src="/frontend/architecture-2/icons/house-plant.svg" alt="{{ config('config('settings.siteTitle')')}}" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary mt-3 mb-4 pb-3'}" />
                                                 <h2 class="text-color-dark font-weight-bold line-height-1 text-5 mb-3">{{ $item->title}}</h2>
                                                 <p class="mb-0">{{ $item->short}}</p>
                                             </div>
@@ -29,12 +29,12 @@
             <div id="start" class="row align-items-center pb-xl-5 mb-xl-5">
                 <div class="col-9 col-lg-4 col-xl-5 pb-5 pb-lg-0 mb-5 mb-lg-0">
                     <div class="position-relative">
-                        <img src="/frontend/architecture-2/backgrounds/arch-plan-2.jpg" class="img-fluid position-absolute left-0 z-index-0 appear-animation" alt="" data-appear-animation="fadeIn" data-appear-animation-delay="850" style="bottom: -168px;" />
+                        <img src="/frontend/architecture-2/backgrounds/arch-plan-2.jpg" class="img-fluid position-absolute left-0 z-index-0 appear-animation" alt="{{ config('config('settings.siteTitle')')}}" data-appear-animation="fadeIn" data-appear-animation-delay="850" style="bottom: -168px;" />
                         <div class="overflow-hidden position-relative z-index-1">
-                            <img src="/frontend/hakkimizda-1.jpg" class="img-fluid appear-animation" alt="" data-appear-animation="maskLeft" data-appear-animation-delay="250" />
+                            <img src="/frontend/hakkimizda-3.jpg" class="img-fluid appear-animation" alt="{{ config('config('settings.siteTitle')')}}" data-appear-animation="maskLeft" data-appear-animation-delay="250" />
                         </div>
                         <div class="overflow-hidden position-absolute z-index-2" style="bottom: -75px; right: -17%;">
-                            <img src="/frontend/hakkimizda-2.jpg" style="width:300px" class="img-fluid appear-animation" alt="" data-appear-animation="maskRight" data-appear-animation-delay="550" />
+                            <img src="/frontend/hakkimizda-2.jpg" style="width:300px" class="img-fluid appear-animation" alt="{{ config('config('settings.siteTitle')')}}" data-appear-animation="maskRight" data-appear-animation-delay="550" />
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <h3 class="text-transform-none text-color-dark font-weight-black text-10 line-height-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1000"> Hayallerinizi Gerçekleştirir </h3>
                         </div>
                         <div class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">
-                            <img src="/frontend/architecture-2/divider.jpg" class="img-fluid opacity-5 mb-4" alt="" />
+                            <img src="/frontend/architecture-2/divider.jpg" class="img-fluid opacity-5 mb-4" alt="{{ config('config('settings.siteTitle')')}}" />
                         </div>
                         <p class="custom-font-tertiary text-5 line-height-4 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400">
                         Berkay Dekorasyon, 2000 yılından bu yana İzmir Karşıyaka’da faaliyet gösteren ve {{ date('Y') - 2000 }} yıllık tecrübesiyle sektörde öncü konumda bulunan bir firmadır.     
