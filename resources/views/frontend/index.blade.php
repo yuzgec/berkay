@@ -114,37 +114,35 @@
                 <p class="mb-5 mb-lg-0">Berkay Dekorasyon olarak başarıyla tamamladığımız bazı referans projelerimiz</p>
             </div>
         </div>
-        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
-            <div class="masonry-loader masonry-loader-loaded">
-                <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative;">
-                    @foreach ($Project->random(20) as $item)
-                    <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2 mb-2" style="position: absolute; left: 0px; top: 0px;">
-                        
-                    <span class="thumb-info thumb-info-swap-content thumb-info-centered-icons">
-                        <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
-                            <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
-                            <span class="thumb-info-action">
-                                <a href="{{ route('projedetail', $item->slug)}}">
-                                    <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle text-dark text-dark"></i></span>
-                                </a>
-                            </span>
-                            <span class="thumb-info-title bottom-30 bg-transparent w-100 mw-100 p-0 text-center">
-                                <span class="thumb-info-swap-content-wrapper">
-                                    <span class="thumb-info-inner">{{ $item->title}}</span>
-                                    <span class="thumb-info-type text-light m-0 float-none">Projeyi İncele</span>
-                                </span>
+        <div class="masonry-loader masonry-loader-loaded">
+            <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative;">
+                @foreach ($Project->random(20) as $item)
+                <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2 mb-2" style="position: absolute; left: 0px; top: 0px;">
+                    
+                <span class="thumb-info thumb-info-swap-content thumb-info-centered-icons">
+                    <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                        <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
+                        <span class="thumb-info-action">
+                            <a href="{{ route('projedetail', $item->slug)}}">
+                                <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle text-dark text-dark"></i></span>
+                            </a>
+                        </span>
+                        <span class="thumb-info-title bottom-30 bg-transparent w-100 mw-100 p-0 text-center">
+                            <span class="thumb-info-swap-content-wrapper">
+                                <span class="thumb-info-inner">{{ $item->title}}</span>
+                                <span class="thumb-info-type text-light m-0 float-none">Projeyi İncele</span>
                             </span>
                         </span>
                     </span>
-                    </div>
+                </span>
+                </div>
 
-                    @endforeach
-                </div>
-                <div class="bounce-loader">
-                    <div class="bounce1"></div>
-                    <div class="bounce2"></div>
-                    <div class="bounce3"></div>
-                </div>
+                @endforeach
+            </div>
+            <div class="bounce-loader">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
             </div>
         </div>
     </div>
