@@ -18,7 +18,6 @@
     </div>
 </section>
     <div class="container container-fluid">
-        <div class="row">
 
 
             <div class="masonry-loader masonry-loader-loaded">
@@ -36,15 +35,17 @@
                             </span>
                         </span>
                         </a>
-             
-    
-                @endforeach
+                        @endforeach
                     </div>
                 </div>
-            <div class="bounce-loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>
+                <div class="bounce-loader">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
 
             
            
-        </div>
     </div>
 @endsection
