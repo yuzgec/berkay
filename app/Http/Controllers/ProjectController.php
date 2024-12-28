@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\MediaService;
 use App\Models\ProjectCategory;
 use App\Http\Requests\ProjectRequest;
+use Illuminate\Support\Facades\Artisan;
 
 class ProjectController extends Controller
 {
@@ -21,6 +22,8 @@ class ProjectController extends Controller
 
     public function index()
     {
+
+        Artisan::call('cache:clear');
         $All = Project::with('getCategory')->orderBy('rank')->get();
         $Kategori = ProjectCategory::all();
         return view('backend.project.index', compact('All', 'Kategori'));

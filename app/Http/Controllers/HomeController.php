@@ -96,7 +96,6 @@ class HomeController extends Controller
 
         $Detail = ProjectCategory::where('slug', $url)->orderBy('rank')->first();
 
-
         return view('frontend.project.index', compact('Detail'));
     }
 
