@@ -119,7 +119,7 @@
                             
                             <div class="owl-stage-outer">
                                 <div class="owl-stage" style="transform: translate3d(-2545px, 0px, 0px); transition: all;width:100000px">
-                                    @foreach ($Project as $item)
+                                    @foreach ($Project->random(10) as $item)
                                         
                                 
                                     <div class="owl-item cloned" style="width: 404.333px; margin-right: 20px;">
