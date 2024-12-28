@@ -63,7 +63,7 @@
                 </div>
                 <div class="card-body justify-content-center align-items-center">
                     <div class="col">
-                        <img src="{{ (!$Edit->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $Edit->getFirstMediaUrl('page')}}" class="img-fluid mb-2 mt-2" alt="Image">
+                        <img src="{{ $Edit->getFirstMediaUrl('page', 'thumb')}}" class="img-fluid mb-2" width="250px" alt="Image">
                     </div>
                     @if($Edit->getFirstMediaUrl('page'))
                         <label class="form-check form-check-single form-switch mb-1"  >
