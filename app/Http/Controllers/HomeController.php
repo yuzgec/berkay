@@ -88,6 +88,17 @@ class HomeController extends Controller
     }
 
 
+    public function projes(){
+
+        SEOMeta::setTitle('Projeler');
+        SEOMeta::setDescription("");
+        SEOMeta::setCanonical(url()->full());
+
+        $Detail = ProjectCategory::all();
+
+        return view('frontend.project.indexAll', compact('Detail'));
+    }
+
     public function proje($url){
 
         SEOMeta::setTitle('Projeler');

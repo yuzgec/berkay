@@ -24,7 +24,7 @@ Route::post('/form', [HomeController::class, 'form'])->name('form');
 Route::get('/ekibimiz', [HomeController::class, 'team'])->name('team');
 Route::get('/ekip/{url}', [HomeController::class, 'teamdetail'])->name('teamdetail');
 
-Route::get('/proje', [HomeController::class, 'proje'])->name('proje.index');
+Route::get('/proje', [HomeController::class, 'projes'])->name('proje.index');
 Route::get('/projeler/{url}', [HomeController::class, 'proje'])->name('proje');
 Route::get('/proje/{url}', [HomeController::class, 'projedetail'])->name('projedetail');
 

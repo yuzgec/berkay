@@ -2,7 +2,6 @@
         <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0" data-plugin-options="{'autoplayTimeout': 4000}" data-dynamic-height="['670px','670px','670px','550px','500px']" style="height: 500px; opacity: 1;">
             <div class="owl-stage-outer">
                 <div class="owl-stage">
-
                     <div class="owl-item position-relative removing fadeOut animated overlay overlay-color-dark overlay-show overlay-op-5" style="background-image: url('/frontend/banner1.jpg'); background-color: #2E3136; background-size: cover; background-position: center;">
                         <div class="container position-relative z-index-2 h-100">
                             <div class="d-flex flex-column align-items-center justify-content-center h-100">

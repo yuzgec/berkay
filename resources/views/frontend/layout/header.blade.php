@@ -1,6 +1,6 @@
 <header id="header" class="header-transparent header-effect-shrink header-no-border-bottom" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyHeaderContainerHeight': 80, 'stickyStartAt': 50, 'stickyChangeLogo': false}" style="height: 100px;">
 	<div class="header-body border-top-0 bg-primary appear-animation animated fadeInUpShorterPlus appear-animation-visible" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1000" data-plugin-options="{'forceAnimation': true}" style="animation-delay: 1000ms; top: 0px;">
-		<div class="header-container container-fluid" style="height: 100px; min-height: 0px;">
+		<div class="container " style="height: 100px; min-height: 0px;">
 			<div class="header-row">
 				<div class="header-column align-items-start justify-content-center">
 					<div class="header-logo z-index-2 col-lg-2 px-0">
@@ -9,6 +9,7 @@
 						</a>
 					</div>
 				</div>
+
 				<div class="header-column flex-row justify-content-end justify-content-lg-center">
 					<div class="header-nav header-nav-line header-nav-bottom-line header-nav-bottom-line-effect-1 header-nav-dropdowns-dark header-nav-light-text justify-content-end">
 						<div class="header-nav-main header-nav-main-arrows header-nav-main-mobile-dark header-nav-main-dropdown-no-borders header-nav-main-effect-3 header-nav-main-sub-effect-1">
@@ -16,7 +17,7 @@
 								<ul class="nav nav-pills" id="mainNav">
 									<li><a href="{{ route('home')}}" class="nav-link active current-page-active">Anasayfa</a></li>
 									<li class="dropdown">
-										<a href="" class="nav-link dropdown-toggle">Kurumsal<i class="fas fa-chevron-down"></i></a>
+										<a href="#" class="nav-link dropdown-toggle">Kurumsal<i class="fas fa-chevron-down"></i></a>
 										<ul class="dropdown-menu">
 											@foreach ($Pages as $item)
 											<li><a href="{{ route('corporatedetail', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
@@ -32,7 +33,7 @@
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a href="{{ route('service')}}" class="nav-link dropdown-toggle">Projeler<i class="fas fa-chevron-down"></i></a>
+										<a href="{{ route('proje.index')}}" class="nav-link dropdown-toggle">Projeler<i class="fas fa-chevron-down"></i></a>
 										<ul class="dropdown-menu">
 											@foreach ($ProjectCategory as $item)
 											<li><a href="{{ route('proje', $item->slug)}}" class="dropdown-item">{{ $item->title}}</a></li>
