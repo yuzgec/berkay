@@ -119,10 +119,25 @@
                 <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'packery', 'itemSelector': '.masonry-item', 'sortBy': 'original-order'}" style="position: relative;">
                     @foreach ($Project->random(20) as $item)
                     <div class="masonry-item no-default-style col-6 col-lg-4 overflow-hidden px-2 mb-2" style="position: absolute; left: 0px; top: 0px;">
-                        <a class="d-inline-block custom-img-thumbnail-style-1 img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon rounded-0 appear-animation animated maskDown appear-animation-visible" href="img/demos/architecture-2/generic/generic-5.jpg" data-appear-animation="maskDown" data-appear-animation-delay="500" style="animation-delay: 500ms;">
-                            <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid rounded-0" alt="">
-                        </a>
+                        
+                    <span class="thumb-info thumb-info-swap-content thumb-info-centered-icons">
+                        <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                            <img src="{{  $item->getFirstMediaUrl('page', 'thumb') }}" class="img-fluid" alt="{{ $item->title}}">
+                            <span class="thumb-info-action">
+                                <a href="{{ route('projedetail', $item>slug)}}">
+                                    <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle text-dark text-dark"></i></span>
+                                </a>
+                            </span>
+                            <span class="thumb-info-title bottom-30 bg-transparent w-100 mw-100 p-0 text-center">
+                                <span class="thumb-info-swap-content-wrapper">
+                                    <span class="thumb-info-inner">{{ $item->title}}</span>
+                                    <span class="thumb-info-type text-light m-0 float-none">Projeyi İncele</span>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
                     </div>
+
                     @endforeach
                 </div>
                 <div class="bounce-loader">
