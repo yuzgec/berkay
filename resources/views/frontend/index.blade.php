@@ -72,7 +72,7 @@
         <div class="row align-items-center text-center py-5 my-3">
             @for ($i=1; $i <= 10; $i++)
             <div class="col-sm-3 col-6 mb-5">
-                <img src="/frontend/logolar/{{$i}}.jpg" alt class="img-fluid" style="max-width: 250px;" />
+                <img src="/frontend/logolar/{{$i}}.jpg" alt class="img-fluid" style="max-width: 400px;" />
             </div>
             @endfor
         </div>

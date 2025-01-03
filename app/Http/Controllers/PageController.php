@@ -69,7 +69,7 @@ class PageController extends Controller
         return view('backend.page.edit', compact('Edit', 'Kategori'));
     }
 
-    public function update(PageRequest $request, $id, Page $update)
+    public function update(PageRequest $request, Page $update)
     {
         //dd($request->all());
         tap($update)->update($request->except('image', 'images', 'deleteImage', 'deleteCover'));
